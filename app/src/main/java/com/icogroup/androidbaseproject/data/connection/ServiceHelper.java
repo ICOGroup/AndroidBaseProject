@@ -2,6 +2,7 @@ package com.icogroup.androidbaseproject.data.connection;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.icogroup.androidbaseproject.data.connection.interfaces.MovieInterface;
 
 import java.io.IOException;
 
@@ -27,6 +28,8 @@ public class ServiceHelper {
         this(BASE_URL);
     }
 
+    public static MovieInterface mMovieInterface;
+
     public ServiceHelper(String baseUrl) {
 
         Gson gson = new GsonBuilder()
@@ -37,16 +40,30 @@ public class ServiceHelper {
             interceptorLog.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptorLog).build();
 
-            RxJavaCallAdapterFactory rxAdapter = RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
-
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(rxAdapter)
                     .client(client)
                     .build();
+
+            if(mMovieInterface != null)
+                mMovieInterface = retrofit.create(MovieInterface.class);
         }
 
+    }
+
+    public static MovieInterface getMovieInterface(){
+        if(mMovieInterface != null){
+            return mMovieInterface;
+        }else{
+            if(retrofit != null){
+                mMovieInterface = retrofit.create(MovieInterface.class);
+                return mMovieInterface;
+            }else{
+                ServiceHelper service = new ServiceHelper();
+                return  mMovieInterface;
+            }
+        }
     }
 
 }

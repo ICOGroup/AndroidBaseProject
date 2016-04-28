@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.icogroup.androidbaseproject.R;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 

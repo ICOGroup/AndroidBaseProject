@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin">
 
     <ImageView
         android:id="@+id/movie_image"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
         android:background="@android:color/holo_red_dark"/>
 
-    <TextView
+    <com.icogroup.androidbaseproject.ui.views.CustomTextView
+        android:id="@+id/movie_tile"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/movie_title"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_toRightOf="@id/movie_image"
+        android:layout_toEndOf="@id/movie_image"
+        android:text="Batman vs Superman"
+        app:font="sans_pro_regular"/>
+
+    <com.icogroup.androidbaseproject.ui.views.CustomTextView
+        android:id="@+id/movie_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/movie_year"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_toRightOf="@id/movie_image"
+        android:layout_toEndOf="@id/movie_image"
+        android:layout_below="@id/movie_tile"
+        android:text="1973"
+        app:font="sans_pro_regular"/>
+
 
 </RelativeLayout>
