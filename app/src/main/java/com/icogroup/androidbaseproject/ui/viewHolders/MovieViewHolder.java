@@ -16,7 +16,7 @@ import io.github.prashantsolanki3.snaplibrary.snap.SnapViewHolder;
 /**
  * Created by Ulises.harris on 4/27/16.
  */
-public class MovieViewHolder extends SnapViewHolder<Movie> {
+public class MovieViewHolder extends SnapViewHolder<Movie>{
 
     ImageView mMovieImage;
     TextView mMovieTitle;

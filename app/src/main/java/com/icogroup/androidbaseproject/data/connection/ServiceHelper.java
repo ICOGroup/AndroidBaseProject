@@ -20,7 +20,7 @@ import rx.schedulers.Schedulers;
  */
 public class ServiceHelper {
 
-    public static final String BASE_URL = "http://api.myservice.com/";
+    public static final String BASE_URL = "http://www.omdbapi.com";
 
     public static Retrofit retrofit;
 
@@ -46,7 +46,7 @@ public class ServiceHelper {
                     .client(client)
                     .build();
 
-            if(mMovieInterface != null)
+            if(mMovieInterface == null)
                 mMovieInterface = retrofit.create(MovieInterface.class);
         }
 

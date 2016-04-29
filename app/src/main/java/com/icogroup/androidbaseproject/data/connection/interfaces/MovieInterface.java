@@ -1,6 +1,6 @@
 package com.icogroup.androidbaseproject.data.connection.interfaces;
 
-import com.icogroup.androidbaseproject.data.entity.Movie;
+import com.icogroup.androidbaseproject.data.entity.Search;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -11,6 +11,6 @@ import retrofit2.http.Query;
  */
 public interface MovieInterface {
 
-    @GET("")
-    Call<Movie> searchMovies(@Query("s") String search);
+    @GET("/")
+    Call<Search> searchMovies(@Query("s") String search);
 }

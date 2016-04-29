@@ -1,8 +1,7 @@
-package com.icogroup.androidbaseproject.data.presenter;
+package com.icogroup.androidbaseproject.data.sections.movie;
 
 import com.icogroup.androidbaseproject.data.entity.Movie;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -16,10 +15,14 @@ public interface MoviesContract {
         void showDialog();
 
         void showErrors(String message);
+
+        void openMovieDetail(Movie movie);
     }
 
     interface MovieActionListener{
 
         void getMovies(String text);
+
+        void openMovieDetail(Movie movie);
     }
 }
