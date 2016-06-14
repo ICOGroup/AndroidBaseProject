@@ -1,7 +1,5 @@
 package com.icogroup.androidbaseproject.data.sections.movie;
 
-import com.icogroup.androidbaseproject.data.connection.repositories.movies.IMovieServices;
-import com.icogroup.androidbaseproject.data.connection.repositories.movies.MovieServices;
 import com.icogroup.androidbaseproject.data.entity.Movie;
 
 import java.util.ArrayList;
@@ -9,20 +7,20 @@ import java.util.ArrayList;
 /**
  * Created by Ulises.harris on 4/29/16.
  */
-public class MoviesPresenter implements MoviesContract.MovieActionListener, IMovieServices {
+public class MoviesPresenter implements MoviesContract.MovieActionListener, MoviesProvider.DataOutput {
 
-    MovieServices mMovieServices;
-    MoviesContract.View mView;
+    private MoviesInteractor interactor;
+    private MoviesContract.View mView;
 
     public MoviesPresenter(MoviesContract.View view) {
         mView = view;
 
-        mMovieServices = new MovieServices(this);
+        interactor = new MoviesInteractor(this);
     }
 
     @Override
     public void getMovies(String text) {
-        mMovieServices.searchMovie(text);
+       interactor.getMovies(text);
     }
 
     @Override
@@ -30,13 +28,14 @@ public class MoviesPresenter implements MoviesContract.MovieActionListener, IMov
         mView.openMovieDetail(movie);
     }
 
+
     @Override
-    public void onGetMoviesSuccess(ArrayList<Movie> movies) {
+    public void getMovies(ArrayList<Movie> movies) {
         mView.showMovies(movies);
     }
 
     @Override
-    public void onGetMoviesFailed(String error) {
+    public void getError(String error) {
         mView.showErrors(error);
     }
 }

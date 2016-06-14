@@ -16,24 +16,21 @@ import retrofit2.Response;
  */
 public class MovieServices {
 
+    public MovieServices() {
 
-    private IMovieServices callback;
-
-    public MovieServices(IMovieServices callback) {
-        this.callback = callback;
     }
 
-    public void searchMovie(String text){
+    public void searchMovie(String text, final RepositoryListener<ArrayList<Movie>> callback){
         Call<Search> call = ServiceHelper.getMovieInterface().searchMovies(text);
         call.enqueue(new Callback<Search>() {
             @Override
             public void onResponse(Call<Search> call, Response<Search> response) {
-                callback.onGetMoviesSuccess(response.body().getSearch());
+                callback.onSuccess(response.body().getSearch());
             }
 
             @Override
             public void onFailure(Call<Search> call, Throwable t) {
-                callback.onGetMoviesFailed(t.getMessage());
+                callback.onFailed(t.getMessage());
             }
         });
 

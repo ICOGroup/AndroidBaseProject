@@ -7,9 +7,9 @@ import java.util.ArrayList;
 /**
  * Created by Ulises.harris on 4/29/16.
  */
-public interface IMovieServices {
+public interface RepositoryListener<T> {
 
-    void onGetMoviesSuccess(ArrayList<Movie> movies);
+    void onSuccess(T response);
 
-    void onGetMoviesFailed(String error);
+    void onFailed(String error);
 }
