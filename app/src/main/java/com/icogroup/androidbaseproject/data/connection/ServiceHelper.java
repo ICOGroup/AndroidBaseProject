@@ -2,7 +2,9 @@ package com.icogroup.androidbaseproject.data.connection;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 import com.icogroup.androidbaseproject.data.connection.interfaces.MovieInterface;
+import com.icogroup.androidbaseproject.data.connection.interfaces.UserInterface;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -24,6 +26,8 @@ public class ServiceHelper {
 
     public static MovieInterface mMovieInterface;
 
+    public static UserInterface mUserInterface;
+
     public ServiceHelper(String baseUrl) {
 
         Gson gson = new GsonBuilder()
@@ -42,6 +46,9 @@ public class ServiceHelper {
 
             if(mMovieInterface == null)
                 mMovieInterface = retrofit.create(MovieInterface.class);
+
+            if(mUserInterface == null)
+                mUserInterface = retrofit.create(UserInterface.class);
         }
 
     }
@@ -56,6 +63,20 @@ public class ServiceHelper {
             }else{
                 ServiceHelper service = new ServiceHelper();
                 return  mMovieInterface;
+            }
+        }
+    }
+
+    public static UserInterface getUserInterface(){
+        if(mUserInterface != null){
+            return mUserInterface;
+        }else{
+            if(retrofit != null){
+                mUserInterface = retrofit.create(UserInterface.class);
+                return mUserInterface;
+            }else{
+                ServiceHelper service = new ServiceHelper();
+                return mUserInterface;
             }
         }
     }

@@ -1,3 +1,16 @@
 <resources>
+    <string name="facebook_app_id">1126286317417350</string>
+
     <string name="app_name">Base Project</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="log_in">Sign in</string>
+
+    <string name="empty_field">The field must not be empty.</string>
+    <string name="invalid_email">The email is not valid.</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="name_hint">Name</string>
+    <string name="surname_hint">Last Name</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

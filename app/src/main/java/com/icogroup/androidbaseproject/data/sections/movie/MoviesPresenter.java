@@ -1,6 +1,8 @@
 package com.icogroup.androidbaseproject.data.sections.movie;
 
 import com.icogroup.androidbaseproject.data.entity.Movie;
+import com.icogroup.androidbaseproject.data.interactors.movie.MoviesInteractor;
+import com.icogroup.androidbaseproject.data.interactors.movie.MoviesProvider;
 
 import java.util.ArrayList;
 

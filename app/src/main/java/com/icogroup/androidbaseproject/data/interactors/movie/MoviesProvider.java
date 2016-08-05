@@ -1,4 +1,4 @@
-package com.icogroup.androidbaseproject.data.sections.movie;
+package com.icogroup.androidbaseproject.data.interactors.movie;
 
 import com.icogroup.androidbaseproject.data.entity.Movie;
 

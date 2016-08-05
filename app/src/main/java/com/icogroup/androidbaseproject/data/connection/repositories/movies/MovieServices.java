@@ -1,11 +1,11 @@
 package com.icogroup.androidbaseproject.data.connection.repositories.movies;
 
 import com.icogroup.androidbaseproject.data.connection.ServiceHelper;
+import com.icogroup.androidbaseproject.data.connection.repositories.RepositoryListener;
 import com.icogroup.androidbaseproject.data.entity.Movie;
 import com.icogroup.androidbaseproject.data.entity.Search;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

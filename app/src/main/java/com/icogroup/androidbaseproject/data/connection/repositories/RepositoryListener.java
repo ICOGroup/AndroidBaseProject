@@ -1,4 +1,4 @@
-package com.icogroup.androidbaseproject.data.connection.repositories.movies;
+package com.icogroup.androidbaseproject.data.connection.repositories;
 
 import com.icogroup.androidbaseproject.data.entity.Movie;
 
