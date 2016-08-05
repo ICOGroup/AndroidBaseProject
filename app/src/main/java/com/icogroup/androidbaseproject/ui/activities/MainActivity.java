@@ -6,12 +6,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.icogroup.androidbaseproject.R;
+import com.icogroup.androidbaseproject.data.Base.BaseRecyclerViewAdapter;
 import com.icogroup.androidbaseproject.data.entity.Movie;
 import com.icogroup.androidbaseproject.data.routing.BaseRouting;
 import com.icogroup.androidbaseproject.data.sections.movie.MoviesContract;
@@ -21,15 +24,12 @@ import com.icogroup.androidbaseproject.util.AppUtil;
 
 import java.util.ArrayList;
 
-import io.github.prashantsolanki3.snaplibrary.snap.SnapAdapter;
-import io.github.prashantsolanki3.snaplibrary.snap.recycler.SnapOnItemClickListener;
-
 
 public class MainActivity extends AppCompatActivity implements MoviesContract.View, SearchView
         .OnQueryTextListener {
 
     private RecyclerView mMoviesRecycler;
-    SnapAdapter<Movie, MovieViewHolder> adapter;
+    BaseRecyclerViewAdapter<Movie, MovieViewHolder> adapter;
     private MenuItem searchMenuItem;
     private SearchView mSearchView;
     private MoviesContract.MovieActionListener mMovieListener;
@@ -53,21 +53,23 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
         mMoviesRecycler = (RecyclerView) findViewById(R.id.movies_recycler_view);
         mMoviesRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new SnapAdapter<>
-                (this, Movie.class, R.layout.movie_item, MovieViewHolder.class);
-
-
-
-        mMoviesRecycler.setAdapter(adapter);
-
-        adapter.setRecyclerView(mMoviesRecycler);
-
-        adapter.setOnItemClickListener(new SnapOnItemClickListener() {
+        adapter = new BaseRecyclerViewAdapter<Movie, MovieViewHolder>(this) {
             @Override
-            public void onItemClick(View view, int i) {
-                mMovieListener.openMovieDetail(mMovies.get(i));
+            protected MovieViewHolder onCreateItemView(LayoutInflater inflater, ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent,
+                        false);
+                return new MovieViewHolder(view, parent.getContext()) ;
+            }
+        };
+
+        adapter.setOnItemClickListener(new BaseRecyclerViewAdapter.Listener<Movie>() {
+            @Override
+            public void onClickItem(Movie movie, View v, int position) {
+                mMovieListener.openMovieDetail(mMovies.get(position));
             }
         });
+
+        mMoviesRecycler.setAdapter(adapter);
 
         mMovieListener = new MoviesPresenter(this);
         mBaseRouting = new BaseRouting();
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
     @Override
     public void showMovies(ArrayList<Movie> movies) {
         mMovies = movies;
-        adapter.set(movies);
+        adapter.setAll(movies);
 
     }
 
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
 
     @Override
     public void openMovieDetail(Movie movie) {
-        mBaseRouting.movieDetail(this, this, movie);
+        mBaseRouting.movieDetail(this, movie);
     }
 
     @Override
