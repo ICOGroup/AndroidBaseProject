@@ -20,6 +20,8 @@ public class ServiceHelper {
 
     public static Retrofit retrofit;
 
+    private static ServiceHelper instance = null;
+
     public ServiceHelper() {
         this(BASE_URL);
     }
@@ -33,7 +35,7 @@ public class ServiceHelper {
         Gson gson = new GsonBuilder()
                 .create();
 
-        if(retrofit == null){
+        if (retrofit == null) {
             HttpLoggingInterceptor interceptorLog = new HttpLoggingInterceptor();
             interceptorLog.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptorLog).build();
@@ -44,41 +46,26 @@ public class ServiceHelper {
                     .client(client)
                     .build();
 
-            if(mMovieInterface == null)
-                mMovieInterface = retrofit.create(MovieInterface.class);
-
-            if(mUserInterface == null)
-                mUserInterface = retrofit.create(UserInterface.class);
+            mMovieInterface = retrofit.create(MovieInterface.class);
+            mUserInterface = retrofit.create(UserInterface.class);
         }
 
     }
 
-    public static MovieInterface getMovieInterface(){
-        if(mMovieInterface != null){
-            return mMovieInterface;
-        }else{
-            if(retrofit != null){
-                mMovieInterface = retrofit.create(MovieInterface.class);
-                return mMovieInterface;
-            }else{
-                ServiceHelper service = new ServiceHelper();
-                return  mMovieInterface;
-            }
+    public static ServiceHelper getInstance() {
+        if (instance == null) {
+            instance = new ServiceHelper();
         }
+
+        return instance;
     }
 
-    public static UserInterface getUserInterface(){
-        if(mUserInterface != null){
-            return mUserInterface;
-        }else{
-            if(retrofit != null){
-                mUserInterface = retrofit.create(UserInterface.class);
-                return mUserInterface;
-            }else{
-                ServiceHelper service = new ServiceHelper();
-                return mUserInterface;
-            }
-        }
+    public MovieInterface getMovieInterface() {
+        return mMovieInterface;
+    }
+
+    public UserInterface getUserInterface() {
+        return mUserInterface;
     }
 
 }

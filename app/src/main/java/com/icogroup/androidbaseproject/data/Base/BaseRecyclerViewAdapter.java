@@ -1,4 +1,4 @@
-package com.icogroup.androidbaseproject.data.Base;
+package com.icogroup.androidbaseproject.data.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package com.icogroup.androidbaseproject.data.connection.repositories.movies;
+package com.icogroup.androidbaseproject.data.connection.repositories.users;
 
 import com.icogroup.androidbaseproject.data.connection.ServiceHelper;
 import com.icogroup.androidbaseproject.data.connection.repositories.RepositoryListener;
@@ -33,7 +33,7 @@ public class UserRepository {
         body.put(EMAIL_PARAM, email);
         body.put(PASSWORD_PARAM, password);
 
-        Call<User> call = ServiceHelper.getUserInterface().register(body);
+        Call<User> call = ServiceHelper.getInstance().getUserInterface().register(body);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -52,7 +52,7 @@ public class UserRepository {
         body.put(EMAIL_PARAM, email);
         body.put(PASSWORD_PARAM, password);
 
-        Call<User> call = ServiceHelper.getUserInterface().login(body);
+        Call<User> call = ServiceHelper.getInstance().getUserInterface().login(body);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

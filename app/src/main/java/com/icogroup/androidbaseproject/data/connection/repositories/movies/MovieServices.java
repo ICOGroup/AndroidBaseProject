@@ -21,7 +21,7 @@ public class MovieServices {
     }
 
     public void searchMovie(String text, final RepositoryListener<ArrayList<Movie>> callback){
-        Call<Search> call = ServiceHelper.getMovieInterface().searchMovies(text);
+        Call<Search> call = ServiceHelper.getInstance().getMovieInterface().searchMovies(text);
         call.enqueue(new Callback<Search>() {
             @Override
             public void onResponse(Call<Search> call, Response<Search> response) {

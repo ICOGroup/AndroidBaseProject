@@ -1,4 +1,4 @@
-package com.icogroup.androidbaseproject.data.Base;
+package com.icogroup.androidbaseproject.data.base;
 
 /**
  * Created by Ulises.harris on 8/5/16.

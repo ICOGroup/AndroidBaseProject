@@ -1,7 +1,7 @@
 package com.icogroup.androidbaseproject.data.interactors.register;
 
 import com.icogroup.androidbaseproject.data.connection.repositories.RepositoryListener;
-import com.icogroup.androidbaseproject.data.connection.repositories.movies.UserRepository;
+import com.icogroup.androidbaseproject.data.connection.repositories.users.UserRepository;
 import com.icogroup.androidbaseproject.data.entity.User;
 
 /**
