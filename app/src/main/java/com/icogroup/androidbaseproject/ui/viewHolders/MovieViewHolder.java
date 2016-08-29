@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.icogroup.androidbaseproject.R;
-import com.icogroup.androidbaseproject.data.base.BaseRecyclerViewHolder;
+import com.icogroup.androidbaseproject.data.base.recyclerview.BaseRecyclerViewHolder;
 import com.icogroup.androidbaseproject.data.entity.Movie;
 
 import butterknife.BindView;

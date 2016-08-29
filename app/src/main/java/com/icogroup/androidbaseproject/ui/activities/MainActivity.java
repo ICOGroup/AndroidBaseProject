@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.icogroup.androidbaseproject.R;
-import com.icogroup.androidbaseproject.data.base.BaseRecyclerViewAdapter;
+import com.icogroup.androidbaseproject.data.base.recyclerview.BaseRecyclerViewAdapter;
 import com.icogroup.androidbaseproject.data.entity.Movie;
 import com.icogroup.androidbaseproject.data.routing.BaseRouting;
 import com.icogroup.androidbaseproject.data.sections.movie.MoviesContract;
