@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
     private SearchView mSearchView;
     private MoviesContract.MovieActionListener mMovieListener;
     private ArrayList<Movie> mMovies;
-    private BaseRouting mBaseRouting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +43,14 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         init();
 
+    }
+
+    @Override
+    protected void onStop() {
+        mMovieListener.onStop();
+        super.onStop();
     }
 
     private void init() {
@@ -65,14 +69,13 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
         adapter.setOnItemClickListener(new BaseRecyclerViewAdapter.Listener<Movie>() {
             @Override
             public void onClickItem(Movie movie, View v, int position) {
-                mMovieListener.openMovieDetail(mMovies.get(position));
+                mMovieListener.openMovieDetail(MainActivity.this, mMovies.get(position));
             }
         });
 
         mMoviesRecycler.setAdapter(adapter);
 
-        mMovieListener = new MoviesPresenter(this);
-        mBaseRouting = new BaseRouting();
+        mMovieListener = new MoviesPresenter(this, new BaseRouting());
     }
 
     @Override
@@ -87,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
         return true;
     }
 
@@ -108,10 +110,6 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void openMovieDetail(Movie movie) {
-        mBaseRouting.movieDetail(this, movie);
-    }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
