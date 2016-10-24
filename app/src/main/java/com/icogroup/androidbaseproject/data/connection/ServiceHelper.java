@@ -9,9 +9,7 @@ import com.icogroup.androidbaseproject.data.connection.interfaces.UserInterface;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Ulises.harris on 4/27/16.
@@ -34,17 +32,18 @@ public class ServiceHelper {
 
     public ServiceHelper(String baseUrl) {
 
+        Gson gson = new GsonBuilder()
+                .create();
 
         if (retrofit == null) {
-//            HttpLoggingInterceptor interceptorLog = new HttpLoggingInterceptor();
-//            interceptorLog.setLevel(HttpLoggingInterceptor.Level.BODY);
-//            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptorLog).build();
-
+            HttpLoggingInterceptor interceptorLog = new HttpLoggingInterceptor();
+            interceptorLog.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptorLog).build();
 
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .client(client)
                     .build();
 
             mMovieInterface = retrofit.create(MovieInterface.class);

@@ -1,74 +1,43 @@
 package com.icogroup.androidbaseproject.data.sections.movie;
 
-import android.app.Activity;
-
 import com.icogroup.androidbaseproject.data.entity.Movie;
-import com.icogroup.androidbaseproject.data.entity.Search;
 import com.icogroup.androidbaseproject.data.interactors.movie.MoviesInteractor;
 import com.icogroup.androidbaseproject.data.interactors.movie.MoviesProvider;
-import com.icogroup.androidbaseproject.data.routing.IRouting;
 
 import java.util.ArrayList;
-
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Ulises.harris on 4/29/16.
  */
-public class MoviesPresenter implements MoviesContract.MovieActionListener {
+public class MoviesPresenter implements MoviesContract.MovieActionListener, MoviesProvider.DataOutput {
 
     private MoviesInteractor interactor;
     private MoviesContract.View mView;
-    private IRouting router;
-    private Subscription moviesSubscription;
 
-    public MoviesPresenter(MoviesContract.View view, IRouting router) {
+    public MoviesPresenter(MoviesContract.View view) {
         mView = view;
-        this.router = router;
 
-        interactor = new MoviesInteractor();
+        interactor = new MoviesInteractor(this);
     }
 
     @Override
     public void getMovies(String text) {
-       moviesSubscription = interactor.getMovies(text)
-               .subscribeOn(Schedulers.io())
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(new Subscriber<Search>() {
-                   @Override
-                   public void onCompleted() {
-
-                   }
-
-                   @Override
-                   public void onError(Throwable e) {
-                        mView.showErrors(e.getLocalizedMessage());
-                   }
-
-                   @Override
-                   public void onNext(Search search) {
-                       if(search != null)
-                           mView.showMovies(search.getSearch());
-                   }
-               });
+       interactor.getMovies(text);
     }
 
     @Override
-    public void onStop() {
-        if(moviesSubscription != null && !moviesSubscription.isUnsubscribed()){
-            moviesSubscription.unsubscribe();
-        }
+    public void openMovieDetail(Movie movie) {
+        mView.openMovieDetail(movie);
+    }
+
+
+    @Override
+    public void getMovies(ArrayList<Movie> movies) {
+        mView.showMovies(movies);
     }
 
     @Override
-    public void openMovieDetail(Activity activity, Movie movie) {
-        router.movieDetail(activity, movie);
+    public void getError(String error) {
+        mView.showErrors(error);
     }
-
-
 }
