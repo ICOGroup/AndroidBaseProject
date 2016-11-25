@@ -11,7 +11,8 @@ import java.util.List;
 /**
  * Created by Ulises.harris on 8/29/16.
  */
-public abstract class SpinnerAdapter<T, VH extends IcoBaseHolder<T>, VD extends IcoBaseHolder<T> > extends ArrayAdapter<T> {
+public abstract class SpinnerAdapter<T, VH extends IcoBaseHolder<T>, VD extends IcoBaseHolder<T>>
+        extends ArrayAdapter<T> {
 
     private final List<T> items;
     private final int layout;
@@ -25,7 +26,7 @@ public abstract class SpinnerAdapter<T, VH extends IcoBaseHolder<T>, VD extends 
         this.layout = layout;
         this.dropdown = dropdown;
 
-        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     protected abstract VH onCreateView(View convertView);
@@ -36,7 +37,8 @@ public abstract class SpinnerAdapter<T, VH extends IcoBaseHolder<T>, VD extends 
     public View getView(int position, View convertView, ViewGroup parent) {
 
         final T item = items.get(position);
-        final View view = (convertView == null) ? inflater.inflate(layout, parent, false) : convertView;
+        final View view = (convertView == null) ? inflater.inflate(layout, parent, false) :
+                convertView;
 
         convertView = view;
 
@@ -50,7 +52,8 @@ public abstract class SpinnerAdapter<T, VH extends IcoBaseHolder<T>, VD extends 
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
 
         final T item = items.get(position);
-        final View view = (convertView == null) ? inflater.inflate(dropdown, parent, false) : convertView;
+        final View view = (convertView == null) ? inflater.inflate(dropdown, parent, false) :
+                convertView;
 
         convertView = view;
 

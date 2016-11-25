@@ -1,6 +1,5 @@
 package com.icogroup.androidbaseproject.data.connection.interfaces;
 
-import com.icogroup.androidbaseproject.data.entity.ResponseWrapper;
 import com.icogroup.androidbaseproject.data.entity.Search;
 
 import retrofit2.http.GET;

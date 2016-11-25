@@ -5,16 +5,11 @@ import android.app.Activity;
 import com.icogroup.androidbaseproject.data.entity.Movie;
 import com.icogroup.androidbaseproject.data.entity.Search;
 import com.icogroup.androidbaseproject.data.interactors.movie.MoviesInteractor;
-import com.icogroup.androidbaseproject.data.interactors.movie.MoviesProvider;
 import com.icogroup.androidbaseproject.data.routing.IRouting;
-
-import java.util.ArrayList;
 
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**

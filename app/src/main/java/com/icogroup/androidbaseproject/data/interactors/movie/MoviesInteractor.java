@@ -3,8 +3,6 @@ package com.icogroup.androidbaseproject.data.interactors.movie;
 import com.icogroup.androidbaseproject.data.connection.repositories.movies.MovieServices;
 import com.icogroup.androidbaseproject.data.entity.Search;
 
-import java.util.ArrayList;
-
 import rx.Observable;
 
 /**
