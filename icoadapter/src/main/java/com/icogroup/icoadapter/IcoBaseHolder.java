@@ -1,4 +1,4 @@
-package com.icogroup.androidbaseproject.data.base;
+package com.icogroup.icoadapter;
 
 import android.view.View;
 

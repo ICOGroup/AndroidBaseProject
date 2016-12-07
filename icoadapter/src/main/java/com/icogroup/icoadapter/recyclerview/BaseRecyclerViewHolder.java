@@ -1,4 +1,4 @@
-package com.icogroup.androidbaseproject.data.base.recyclerview;
+package com.icogroup.icoadapter.recyclerview;
 
 /**
  * Created by Ulises.harris on 8/5/16.

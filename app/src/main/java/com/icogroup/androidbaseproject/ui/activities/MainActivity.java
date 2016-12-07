@@ -14,13 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.icogroup.androidbaseproject.R;
-import com.icogroup.androidbaseproject.data.base.recyclerview.BaseRecyclerViewAdapter;
 import com.icogroup.androidbaseproject.data.entity.Movie;
 import com.icogroup.androidbaseproject.data.routing.BaseRouting;
 import com.icogroup.androidbaseproject.data.sections.movie.MoviesContract;
 import com.icogroup.androidbaseproject.data.sections.movie.MoviesPresenter;
 import com.icogroup.androidbaseproject.ui.viewHolders.MovieViewHolder;
 import com.icogroup.androidbaseproject.util.AppUtil;
+import com.icogroup.icoadapter.recyclerview.BaseRecyclerViewAdapter;
 
 import java.util.ArrayList;
 

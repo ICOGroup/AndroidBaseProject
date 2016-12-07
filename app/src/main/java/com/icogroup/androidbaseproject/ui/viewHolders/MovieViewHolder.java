@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.icogroup.androidbaseproject.R;
-import com.icogroup.androidbaseproject.data.base.recyclerview.BaseRecyclerViewHolder;
 import com.icogroup.androidbaseproject.data.entity.Movie;
+import com.icogroup.icoadapter.recyclerview.BaseRecyclerViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Ulises.harris on 4/27/16.
  */
-public class MovieViewHolder extends BaseRecyclerViewHolder<Movie>{
+public class MovieViewHolder extends BaseRecyclerViewHolder<Movie> {
 
     @BindView(R.id.movie_image)
     ImageView mMovieImage;
